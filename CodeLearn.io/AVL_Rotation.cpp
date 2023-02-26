@@ -42,20 +42,35 @@ node *rotationRight(node *node_r){
     A->left = D;
     return node_r;
 }
-
+node *rotationLeft(node *node_r){
+    //cout<<node_r<<endl;
+    node *A = node_r;
+    node *B = node_r->right;
+    node *D = B->left;
+    node_r = B;
+    B->left = A;
+    A->right = D;
+    return node_r;
+}
 int main(){
     node *myNode = NULL;
+    myNode = insert(myNode,1);
+    myNode = insert(myNode,2);
+    myNode = insert(myNode,3);
+    myNode = insert(myNode,4);
+    myNode = insert(myNode,5);
+    myNode = insert(myNode,6);
+    myNode = insert(myNode,7);
     myNode = insert(myNode,8);
     myNode = insert(myNode,9);
-    myNode = insert(myNode,4);
-    myNode = insert(myNode,2);
-    myNode = insert(myNode,6);
-    myNode = insert(myNode,1);
-    myNode = insert(myNode,3);
-    myNode = insert(myNode,5);
-    myNode = insert(myNode,7);
     printTree(myNode);
-    myNode = rotationRight(myNode);
+    myNode = rotationLeft(myNode);
+    myNode = rotationLeft(myNode);
+    myNode = rotationLeft(myNode);
+    myNode = rotationLeft(myNode);
+    myNode = rotationLeft(myNode);
+    myNode = rotationLeft(myNode);
+    cout<<endl;
     printTree(myNode);
     return 0;
 }
