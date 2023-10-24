@@ -12,6 +12,39 @@ struct Node{
     }
 };
 
+Node* findMin(Node* root){
+    while(root->left != NULL){
+        root = root->left;
+    }
+    return root;
+}
+
+Node* delete_node(Node* root, int data){
+    if(root == NULL) return NULL;
+    if(data < root->data){
+        root->left = delete_node(root->left, data);
+    }
+    else if(data > root->data){
+        root->right = delete_node(root->right, data);
+    }
+    else{
+        if(root->left == NULL){
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        if(root->right == NULL){
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        Node* temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = delete_node(root->right, temp->data);
+    }
+    return root;
+}
+
 void traversal(Node* root){
     if(root == NULL){
         return;
@@ -45,4 +78,9 @@ int main()
     insert(root, 14);
     
     traversal(root);
+    delete_node(root, 3);
+    cout<<endl;
+    traversal(root);
+
     return 0;
+}
