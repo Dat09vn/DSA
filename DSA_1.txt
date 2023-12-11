@@ -4,7 +4,10 @@
 4. Sorting
 5. Binary Search
 6. Hash Table
-7. LiskList
+7. LiskedList
+	insertToTail: 	C1: loop from head to tail and insert newNode. O(n)
+			C2: everytime when insert, set ptr to store tail node. O(1)
+	
 9. Queue & Stack
 10. Graph
 12. BFS
