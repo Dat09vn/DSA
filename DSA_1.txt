@@ -1,1 +1,15 @@
+1. Array
+2. String
+3. Recursion
+4. Sorting
+5. Binary Search
+6. Hash Table
 7. LiskList
+9. Queue & Stack
+10. Graph
+12. BFS
+13. DFS
+14. Island Matrix Traversal
+15. Topological Sort
+16. Interval
+
