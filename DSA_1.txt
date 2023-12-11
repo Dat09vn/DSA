@@ -8,6 +8,16 @@
 9. Queue & Stack
 10. Graph
 12. BFS
+	Ideal of BFS: It starts at the root of the graph and visits all nodes at the current depth level before moving on to the nodes at the next depth level.
+	Applications:
+		1. Find a path from start node to destination node
+		2. Find the shortest path from a start node to a destination node
+	Using queue to implementation:
+		create a queue Q 
+		mark v as visited and put v into Q 
+		while Q is non-empty 
+    			remove the head u of Q 
+    			mark and enqueue all (unvisited) neighbours of u
 13. DFS
 14. Island Matrix Traversal
 15. Topological Sort
