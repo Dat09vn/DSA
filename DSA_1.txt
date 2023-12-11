@@ -18,6 +18,7 @@
 		while Q is non-empty 
     			remove the head u of Q 
     			mark and enqueue all (unvisited) neighbours of u
+	Time complexity:O(v+e)
 13. DFS
 14. Island Matrix Traversal
 15. Topological Sort
