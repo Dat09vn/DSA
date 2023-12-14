@@ -5,6 +5,7 @@
 5. Binary Search
 6. Hash Table
 7. LiskedList
+	One stylist for implement linkedlist: using dummy node that have val = none to point to the head node.
 	insertToTail: 	C1: loop from head to tail and insert newNode. O(n)
 			C2: everytime when insert, set ptr to store tail node. O(1)
 	
