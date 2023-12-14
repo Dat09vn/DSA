@@ -23,6 +23,34 @@
     			mark and enqueue all (unvisited) neighbours of u
 	Time complexity:O(v+e)
 13. DFS
+	Template of DFS:
+	void traverseGraph(int V, List<List<Integer>> connect) {
+	    // Initialize visited array
+	    boolean[] vis = new boolean[V];
+	    // Go through all the nodes
+	    for (int i = 0; i < V; ++i) {
+	        // Ignore already visited node
+	        if (vis[i]) {
+	            continue;
+	        }
+	        // If this node is not visited, call DFS to visit all nodes reachable from this one
+	        dfs(i, connect, vis);
+	    }
+	}
+--------------------------
+	void dfs(int node, List<List<Integer>> connect, boolean[] vis) {
+	    // Mark current node as visited
+	    vis[node] = true;
+	    // Find all neighbors of this node
+	    for (int u : connect.get(node)) {
+	        // Ignore already visited neighbors
+	        if (vis[u]) {
+	            continue;
+	        }
+	        // If not visited neighbor, recursively call DFS to process this
+	        dfs(u, connect, vis);
+	    }
+	}
 14. Island Matrix Traversal
 15. Topological Sort
 16. Interval
