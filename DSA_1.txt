@@ -38,7 +38,7 @@
 	        dfs(i, connect, vis);
 	    }
 	}
---------------------------
+---------------------------------------------------------------------------
 	void dfs(int node, List<List<Integer>> connect, boolean[] vis) {
 	    // Mark current node as visited
 	    vis[node] = true;
@@ -53,6 +53,43 @@
 	    }
 	}
 14. Island Matrix Traversal
+	// Up, Right, Down, Left
+	int[] dx = new int[]{-1,0,1,0};
+	int[] dy = new int[]{0,1,0,-1};
+	private void traverseMatrix(int[][] arr, int m, int n) {
+	    // Initialize visited array
+	    boolean[][] vis = new boolean[m][n];
+	    // Go thru each element in the array
+	    for (int i = 0; i < m; ++i) {
+	        for (int j = 0; j < n; ++j) {
+	            // Skip invalid or visited cell
+	            if (arr[i][j] == 0 || vis[i][j]) {
+	                continue;
+	            }
+	            // Call DFS to traverse all connected cells and do some calculation
+	            dfs(i,j,m,n,arr);
+	        }
+	    }
+	}
+---------------------------------------------------------------------------------
+	private void dfs(int x, int y, int m, int n, int[][] arr) {
+	    vis[x][y] = true;
+	    // Find neighbors in 4 direction
+	    for (int k = 0; k < 4; ++k) {
+	        int u = x + dx[k];
+	        int v = y + dy[k];
+	        // Skip out of bound cells
+	        // Skip visited cells
+	        // Skip invalid cells
+	        if (!inside(u,v,m,n) || vis[u][v] || arr[u][v] == 0) continue;
+	        // Recursively call DFS for the neighbor cell.
+	        dfs(u, v, m, n, arr);
+	    }
+	}
+	// Function for boundary check
+	private boolean inside(int x, int y, int m, int n) {
+	    return x >= 0 && x < m && y >= 0 && y < n;
+	}
 15. Topological Sort
 16. Interval
 
