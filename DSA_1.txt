@@ -92,4 +92,13 @@
 	}
 15. Topological Sort
 16. Interval
+	def intersect(A: Interval, B: Interval) -> Interval:
+	    if notOverlaps(A, B):
+	        return None
+	    return Interval(max(A.L, B.L), min(A.R, B.R))
+	
+	def merge(A: Interval, B: Interval) -> Interval:
+	    if notOverlaps(A, B):
+	        raise Exception("Intervals don't overlap!")
+	    return Interval(min(A.L, B.L), max(A.R, B.R))
 
