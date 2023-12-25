@@ -91,6 +91,64 @@
 	    return x >= 0 && x < m && y >= 0 && y < n;
 	}
 15. Topological Sort
+Implement by DFS:
+	List<Integer> topologicalSortDFS(int n, List<List<Integer>> cons) {
+	boolean[] vis = new boolean[n];
+		List<Integer> res = new ArrayList<>();
+		For (int i = 0; i < n; ++i) {
+			If (vis[i]) continue;
+			dfs(i, vis, cons, res);
+		}
+		Collections.reverse(res);
+		return res;
+	}
+	private void dfs(int cur, boolean[] vis, List<List<Integer>> cons, List<Integer> res) {
+		vis[cur] = true;
+		for (int u : cons.get(cur)) {
+			// Skip visited node
+			if (vis[u]) continue;
+			// Recursively compute for this descendant node 
+			dfs(u, vis, cons, res);
+		}
+		// All descendants have been processed, add the current node to the result
+	 	// Note that the result list here is in reverse-order
+		res.add(cur);
+	}
+-----------------------------------------------------------------------
+Implement by BFS:
+	List<Integer> topologicalSortBFS(int n, List<List<Integer>> cons) {
+	    // Build inDegree array
+	    int[] inDegree = new int[n];
+	    for (int i = 0; i < n; ++i) {
+	        for (int u : cons.get(i)) {
+	            inDegree[u]++;
+	        }
+	    }
+	    Queue<Integer> q = new LinkedList<>(); 
+	    for (int i = 0; i < n; ++i) {
+	        // Add to queue if inDegree == 0. I.e no incoming edge to this node.
+	        if (inDegree[i] == 0) {
+	            q.add(i);
+	        }
+	    }
+	    List<Integer> res = new ArrayList<>();
+	    while(!q.isEmpty()) {
+	        // Get the current node that has no incoming edge.
+	        int cur = q.poll();
+	        // Add to the result
+	        res.add(cur);
+	        // Go through neighbor nodes that current node connect to
+	        for (int u : cons.get(cur)) {
+	            // Decrease inDegree of this neighbor node. I.e “remove” the edge from current node to this node
+	            inDegree[u]--;
+	            // Add to queue if inDegree == 0. I.e no incoming edge to this node.
+	            if (inDegree[u] == 0) {
+	                q.add(u);
+	            }
+	        }
+	    }
+	    return res;
+	}
 16. Interval
 	def intersect(A: Interval, B: Interval) -> Interval:
 	    if notOverlaps(A, B):
