@@ -11,7 +11,7 @@
 	
 9. Queue & Stack
 10. Graph
-12. BFS
+12. BFS 
 	Ideal of BFS: It starts at the root of the graph and visits all nodes at the current depth level before moving on to the nodes at the next depth level.
 	Applications:
 		1. Find a path from start node to destination node
@@ -23,6 +23,8 @@
     			remove the head u of Q 
     			mark and enqueue all (unvisited) neighbours of u
 	Time complexity:O(v+e)
+---------------------------------------------------------------------
+Example: https://leetcode.com/problems/find-if-path-exists-in-graph/description/
 13. DFS
 	Template of DFS:
 	void traverseGraph(int V, List<List<Integer>> connect) {
