@@ -20,3 +20,40 @@ void printNGE(int arr[], int n)
         s.pop();
     }
 }
+3. Devide and Conquer
+    QuickSelect: Find the Kth largest in array unsorted
+Way 1: Similar quickSort, implement quickSelect: 
+    int partition(int arr[], int l, int r) 
+    { 
+        int i = l; 
+        for (int j = l; j <= r - 1; j++) { 
+            if (arr[j] <= arr[r) { 
+                swap(arr[i], arr[j]); 
+                i++; 
+            } 
+        } 
+        swap(arr[i], arr[r]); 
+        return i; 
+    } 
+        
+    int kthSmallest(int arr[], int l, int r, int k) 
+    { 
+        if (k > 0 && k <= r - l + 1) { 
+            int pivot = partition(arr, l, r);  
+            if (pivot - l == k - 1) 
+                return arr[pivot]; 
+            if (pivot - l > k - 1)  
+                return kthSmallest(arr, l, pivot - 1, k); 
+            return kthSmallest(arr, pivot + 1, r, k - pivot + l - 1); 
+        } 
+        return INT_MAX; 
+    }
+
+Way 2: more efficient
+    1. Choose pivot and partition orginal array in to 3 array: left < pivot, mid = pivot, right > pivot
+    2.     Check if k <= size of array Right --> call recursive array Right
+           Check if k > size of array Right + array Mid --> call recursive array Left
+           Check if k == size of array Right + array Mid --> return pivot
+
+
+
