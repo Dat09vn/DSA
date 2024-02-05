@@ -55,5 +55,21 @@ Way 2: more efficient
            Check if k > size of array Right + array Mid --> call recursive array Left
            Check if k == size of array Right + array Mid --> return pivot
 
+4. Advance Tree
+n: the number of nodes
+depth (level) is the length of this node to root
+h: the height of the tree is maximum depth
+Full Tree:
+    The number of leaf = the number of non leaf + 1
+    L = N + 1
+Perfect Tree: 
+    h = log(n+1)
+    n = 2^(h+1) - 1 maximun number of nodes
+    2^h leaf nodes
+    left = 2i + 1, right = 2i + 2
+ -->searching: log(n) time complexity if tree is balance
+preOrder, postOrder, inOrder:
+--> with BST: all the nodes left is less than this node. All the nodes right is bigger than this node --> using inOrder to find Kth smallest element in BST
+
 
 
