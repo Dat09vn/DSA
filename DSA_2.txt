@@ -71,5 +71,66 @@ Perfect Tree:
 preOrder, postOrder, inOrder:
 --> with BST: all the nodes left is less than this node. All the nodes right is bigger than this node --> using inOrder to find Kth smallest element in BST
 
+7. Trie
+Trie (also know as Prefix Tree) is a tree-based data structure to store and retrieve keys from a dataset of strings.
+Template for trie:
 
+class TrieNode {
+    public:
+    TrieNode* children[26];
+    bool isEndOfWord;
 
+    TrieNode() {
+        for(int i = 0; i < 26; i++) {
+            children[i] = NULL;
+            isEndOfWord = false;
+        }
+    }
+};
+
+class Trie {
+public:
+    TrieNode* root;
+
+    Trie() {
+        root = new TrieNode();
+    }
+    
+    int charToIndex(char ch) {
+        return ch - 'a';
+    }
+
+    void insert(string word) {
+        TrieNode* curNode = root;
+        for(auto i : word) {
+            int idx = charToIndex(i);
+            if(curNode->children[idx] == NULL) {
+                curNode->children[idx] = new TrieNode();
+            }
+            curNode = curNode->children[idx];
+        }
+        curNode->isEndOfWord = true;
+    }
+
+    TrieNode* searchIdx(string word) {
+        TrieNode* curNode = root;
+        for(auto i : word) {
+            int idx = charToIndex(i);
+            if(curNode->children[idx] == NULL) {
+                return NULL;
+            }
+            curNode = curNode->children[idx];
+        }
+        return curNode;
+    }
+
+    bool search(string word) {
+        TrieNode* lastNode = searchIdx(word);
+        return lastNode != NULL && lastNode->isEndOfWord;
+    }
+    
+    bool startsWith(string prefix) {
+        TrieNode* lastNode = searchIdx(prefix);
+        return lastNode != NULL;
+    }
+};
