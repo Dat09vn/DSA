@@ -20,6 +20,8 @@ void printNGE(int arr[], int n)
         s.pop();
     }
 }
+
+
 3. Devide and Conquer
     QuickSelect: Find the Kth largest in array unsorted
 Way 1: Similar quickSort, implement quickSelect: 
@@ -55,6 +57,7 @@ Way 2: more efficient
            Check if k > size of array Right + array Mid --> call recursive array Left
            Check if k == size of array Right + array Mid --> return pivot
 
+    
 4. Advance Tree
 n: the number of nodes
 depth (level) is the length of this node to root
@@ -70,6 +73,33 @@ Perfect Tree:
  -->searching: log(n) time complexity if tree is balance
 preOrder, postOrder, inOrder:
 --> with BST: all the nodes left is less than this node. All the nodes right is bigger than this node --> using inOrder to find Kth smallest element in BST
+
+
+5. Heap
+// Custom comparison functor for priority_queue: that compares strings based on length, and in case of equal lengths it will be lexicographical order,
+struct CompareStrings {
+    bool operator()(const std::string& a, const std::string& b) const {
+        if (a.length() == b.length()) {
+            return a > b; // If same length, sort lexicographically (using > for min-heap)
+        } else {
+            return a.length() > b.length(); // Otherwise, sort by length (using > for min-heap)
+        }
+    }
+};
+
+int main() {
+    std::priority_queue<std::string, std::vector<std::string>, CompareStrings> pq;
+}
+
+// Custom comparison function for sorting strings: To achieve sorting by string length and in case of equal lengths lexicographical order
+bool compareStrings(const std::string& a, const std::string& b) {
+    if (a.length() == b.length()) {
+        return a < b; // If same length, sort lexicographically
+    } else {
+        return a.length() < b.length(); // Otherwise, sort by length
+    }
+}
+
 
 7. Trie
 Trie (also know as Prefix Tree) is a tree-based data structure to store and retrieve keys from a dataset of strings.
@@ -134,27 +164,3 @@ public:
         return lastNode != NULL;
     }
 };
-5. Heap
-// Custom comparison functor for priority_queue: that compares strings based on length, and in case of equal lengths it will be lexicographical order,
-struct CompareStrings {
-    bool operator()(const std::string& a, const std::string& b) const {
-        if (a.length() == b.length()) {
-            return a > b; // If same length, sort lexicographically (using > for min-heap)
-        } else {
-            return a.length() > b.length(); // Otherwise, sort by length (using > for min-heap)
-        }
-    }
-};
-
-int main() {
-    std::priority_queue<std::string, std::vector<std::string>, CompareStrings> pq;
-}
-
-// Custom comparison function for sorting strings: To achieve sorting by string length and in case of equal lengths lexicographical order
-bool compareStrings(const std::string& a, const std::string& b) {
-    if (a.length() == b.length()) {
-        return a < b; // If same length, sort lexicographically
-    } else {
-        return a.length() < b.length(); // Otherwise, sort by length
-    }
-}
