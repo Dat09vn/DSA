@@ -134,3 +134,27 @@ public:
         return lastNode != NULL;
     }
 };
+5. Heap
+// Custom comparison functor for priority_queue: that compares strings based on length, and in case of equal lengths it will be lexicographical order,
+struct CompareStrings {
+    bool operator()(const std::string& a, const std::string& b) const {
+        if (a.length() == b.length()) {
+            return a > b; // If same length, sort lexicographically (using > for min-heap)
+        } else {
+            return a.length() > b.length(); // Otherwise, sort by length (using > for min-heap)
+        }
+    }
+};
+
+int main() {
+    std::priority_queue<std::string, std::vector<std::string>, CompareStrings> pq;
+}
+
+// Custom comparison function for sorting strings: To achieve sorting by string length and in case of equal lengths lexicographical order
+bool compareStrings(const std::string& a, const std::string& b) {
+    if (a.length() == b.length()) {
+        return a < b; // If same length, sort lexicographically
+    } else {
+        return a.length() < b.length(); // Otherwise, sort by length
+    }
+}
