@@ -164,3 +164,39 @@ public:
         return lastNode != NULL;
     }
 };
+14: Diijkstra
+Template:
+/ n: number of nodes
+    // cons: adjacency list. The int[] value stores {neighbor, weight} pair
+    // startNode: the node we want to find smallest distance to other nodes
+    private int[] dijkstra(int n, List<List<int[]>> cons, int startNode) {
+        // Array to store smallest distance from startNode
+        int[] dis = new int[n];
+        // Initially, every node has INF distance from startNode.
+        // Except startNode has distance 0 to itself
+        Arrays.fill(dis, Integer.MAX_VALUE);
+        dis[startNode] = 0;
+        // Use a heap storing {node, distance to this node} pair. Order by distance ascending.
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[1] - b[1]);
+
+    // The algo begins with startNode at distance 0.
+    pq.add(new int[]{startNode, 0});
+    while (!pq.isEmpty()) {
+        // Choose the current node with smallest distance from startNode.
+        int[] cur = pq.poll();
+        // Check all neighbors of currentNode.
+
+
+        for (int[] u : cons.get(cur[0])) {
+            // Calculate distance from startNode to existing neighborNode going through currentNode.
+            int nextDis = cur[1] + u[1];
+            // If the calculated distance is smaller than distance we know so far:
+            // Then update the distance of the neighbor node and add to the heap to process later.
+            if (nextDis < dis[u[0]]) {
+                dis[u[0]] = nextDis;
+                pq.add(new int[]{u[0], nextDis});
+            }
+        }
+    }
+    return dis;
+}
